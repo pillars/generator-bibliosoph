@@ -8,7 +8,7 @@ var BibliosophGenerator = module.exports = function BibliosophGenerator(args, op
   yeoman.generators.Base.apply(this, arguments);
 
   this.on('end', function () {
-    this.installDependencies({ skipInstall: options['skip-install'] });
+    this.installDependencies({ bower: true, skipInstall: options['skip-install'] });
   });
 
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -25,7 +25,6 @@ BibliosophGenerator.prototype.askFor = function askFor() {
 '\n   \'_______________________________________________\'' +
 '\n';
 
-  // have Yeoman greet the user.
   console.log(welcome);
 
   var prompts = [
@@ -48,11 +47,13 @@ BibliosophGenerator.prototype.askFor = function askFor() {
     },
     {
       name: 'analytics_id',
-      message: 'The UA code for Google Analytics (optional)'
+      message: 'The UA code for Google Analytics (optional)',
+      default: false
     },
     {
       name: 'domain',
-      message: 'The domain name the site will be hosted under, like google.com (required only by Google Analytics)'
+      message: 'The domain name the site will be hosted under (required only by Google Analytics)',
+      default: false
     },
     {
       type: 'confirm',
@@ -85,7 +86,6 @@ BibliosophGenerator.prototype.askFor = function askFor() {
   ];
 
   this.prompt(prompts, function (props) {
-    console.log(util);
 
     for(var key in props) {
       this[key] = props[key];
@@ -110,8 +110,3 @@ BibliosophGenerator.prototype.app = function app() {
   this.copy('routes.js');
   this.copy('Procfile');
 };
-
-// BibliosophGenerator.prototype.projectfiles = function projectfiles() {
-//   this.copy('editorconfig', '.editorconfig');
-//   this.copy('jshintrc', '.jshintrc');
-// };
