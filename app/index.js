@@ -51,7 +51,7 @@ BibliosophGenerator.prototype.askFor = function askFor() {
       default: false
     },
     {
-      name: 'domain',
+      name: 'domain_name',
       message: 'The domain name the site will be hosted under (required only by Google Analytics)',
       default: false
     },
