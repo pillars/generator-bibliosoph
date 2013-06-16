@@ -1,6 +1,7 @@
 {
   "name": "generator-bibliosoph",
-  "version": "0.1.0",
+  "preferGlobal": true,
+  "version": "0.1.1",
   "description": "Generate a bibliosoph base using Yeoman",
   "keywords": [
     "yeoman-generator"
@@ -29,9 +30,5 @@
   "engines": {
     "node": ">=0.8.0"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ]
+  "licenses": "MIT"
 }
