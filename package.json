@@ -1,16 +1,16 @@
 {
   "name": "generator-bibliosoph",
-  "version": "0.0.0",
-  "description": "A generator for Yeoman",
+  "version": "0.1.0",
+  "description": "Generate a bibliosoph base using Yeoman",
   "keywords": [
     "yeoman-generator"
   ],
   "homepage": "https://github.com/pillars/generator-bibliosoph",
   "bugs": "https://github.com/pillars/generator-bibliosoph/issues",
   "author": {
-    "name": "",
-    "email": "",
-    "url": "https://github.com/pillars"
+    "name": "Karel Ledru-Mathe",
+    "email": "karel@ledrumathe.com",
+    "url": "http://ledrumathe.com"
   },
   "main": "app/index.js",
   "repository": {
