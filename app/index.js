@@ -8,7 +8,7 @@ var BibliosophGenerator = module.exports = function BibliosophGenerator(args, op
   yeoman.generators.Base.apply(this, arguments);
 
   this.on('end', function () {
-    this.installDependencies({ bower: true, skipInstall: options['skip-install'] });
+    this.installDependencies({ bower: false, skipInstall: options['skip-install'] });
   });
 
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
