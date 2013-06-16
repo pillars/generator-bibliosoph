@@ -1,0 +1,340 @@
+$header-height = h(2)
+$main-menu-width = h(4)
+
+.page-head {
+    background: $blue-bg
+    border-bottom: 1px solid $nav-border
+
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    height: $header-height
+    z-index: $z-header
+
+    .logo {
+        color: $title
+        line-height: $header-height
+        font-size: 24px
+        font-weight: bold
+        text-decoration: none
+
+        float: left
+        margin-left: h(.5)
+        height: $header-height
+    }
+
+    .page-cta {
+        float: right 
+        margin: h(.5) h(.5) 0 0
+
+        a {
+            border: 1px solid $blue-bg-dark
+            color: $blue
+            border-radius: 12px
+            font-size: 12px
+            line-height: 16px
+            text-decoration: none
+
+            margin: 0 0 h(.5) 8px
+            padding: 4px 12px
+            height: 16px
+
+            &:hover {
+                background: $blue
+                border: 1px solid transparent
+                color: #FFF
+            }
+        }
+    }
+}
+
+.page-nav {
+    position: absolute
+    top: 0
+    left: 0
+    padding-top: $header-height
+    height: 100%
+    z-index: $z-page-nav
+
+    &.fixed {
+        position: fixed
+        top: -1 * $header-height
+    }
+
+    .main-menu {
+        background: $nav-bg
+        border-top: 1px solid $nav-light
+        border-right: 1px solid $nav-border
+        box-shadow: 1px 0 2px 0 $nav-border
+        position: relative
+        height: 100%
+        z-index: 5
+
+        ul {
+            list-style: none
+            clearfix()
+            margin: 0
+            padding: 0
+            width: $main-menu-width
+        }
+
+        li {
+            border-top: 1px solid $nav-border
+            border-bottom: 1px solid $nav-light
+
+            position: relative
+            margin-top: -2px
+            padding-bottom: 2px
+            height: $main-menu-width
+            z-index: 5
+
+            &:first-child {
+                border-top: 0
+                margin-top: 0
+                padding-bottom: 1px
+
+                a {
+                    border-top: 0
+                }
+
+                &:hover, &.active {
+                    border-top: 0
+
+                    a {
+                        border-top: 0
+                    }
+                }
+            }
+
+            &:last-child {
+                border-bottom: 0
+            }
+
+            $arrow-size = 8px
+            $arrow-border = $arrow-size + 2px
+
+            &:after, &:before {
+                content: ""
+                position: absolute
+                top: 50%
+                right: 0
+                transition: 0.1s all linear;
+            }
+
+            &:after {
+                border-left: $arrow-size solid $nav-hover
+                border-top: $arrow-size solid transparent
+                border-bottom: $arrow-size solid transparent
+
+                margin-top: -1 * $arrow-size
+                z-index: 1
+            }
+
+            &:before {
+                border-left: $arrow-border solid $nav-border
+                border-top: $arrow-border solid transparent
+                border-bottom: $arrow-border solid transparent
+
+                margin-top: -1 * $arrow-border
+                z-index: 0
+            }
+
+            &:hover, &.active {
+                border-top: 1px solid $nav-border
+                border-bottom: 1px solid $nav-border
+                z-index: 10
+
+                &:after {
+                    right: -1 * $arrow-size
+                }
+
+                &:before {
+                    right: -1 * $arrow-border;
+                }
+
+                a {
+                    background: $nav-hover
+                    border-color: transparent
+                }
+            }
+        }
+
+
+        a {
+            background: $nav-bg
+            border-top: 1px solid $nav-light
+            border-bottom: 1px solid $nav-border
+            color: $text
+            font-size: 12px
+            font-weight: bold
+            line-height: h()
+            text-align: center
+            text-decoration: none
+            
+            display: block
+            position: relative
+            padding-top: h(3)
+            height: h()
+            z-index: 2
+
+            transition: 0.4s background linear;
+
+            span {
+                display: block
+                overflow: hidden
+                position: absolute
+                top: h()
+                left: h()
+                width: h(2)
+                height: h(2)
+            }
+        }
+
+        .home span       { background: url('../images/sprite.png') no-repeat -50px 0 }
+        .layouts span    { background: url('../images/sprite.png') no-repeat -100px 0 }
+        .develop span    { background: url('../images/sprite.png') no-repeat -150px 0 }
+    }
+
+    .sub-menu {
+        background: $nav-hover
+        border-right: 1px solid $nav-border
+        list-style: none
+        transition: 0.3s all cubic-bezier(0.86, 0, 0.07, 1)
+
+        // display: none
+        position: absolute
+        top: $header-height
+        bottom: 0
+        right: 0
+        margin: 0
+        padding: 0
+        width: 248px
+        z-index: 0
+
+        &.open {
+            right: -248px
+        }
+
+        li:last-child {
+            border-bottom: 1px solid $nav-bg
+        }
+
+        a {
+            border-top: 1px solid $nav-bg
+            line-height: h(2) - 1px
+            display: block
+            padding: 0 h()
+            height: h(2) - 1px
+
+            &:hover {
+                background: $subnav-hover
+                border-top: 1px solid $nav-border
+                text-decoration: none
+            }
+        }
+    }
+}
+
+.page-body {
+    position: absolute
+    top: $header-height
+    left: 0
+    right: 0
+    bottom: 0
+}
+
+.document-nav {
+    background: #FFF;
+    border-right: 1px solid $blue-bg-dark
+
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    padding: h() 0 h() h()
+    width: 224px
+
+    &.fixed {
+        position: fixed
+        left: 0
+    }
+
+    .title {
+        font-size: 14px
+        font-weight: bold
+        letter-spacing: 1px
+        text-transform: uppercase
+        margin: 0
+    }
+
+    ul+.title {
+        margin-top: h()
+    }
+
+    ul {
+        list-style: none
+        margin: 0
+        padding: 0
+
+        ul {
+            display: none
+            margin: 0 0 h(.25) h(.5)
+
+            li {
+                font-size: $f-small
+                line-height: 20px
+            }
+        }
+    }
+
+    a {
+        display: block
+        padding-right: h()
+    }
+
+    .current {
+        border-right: 3px solid $blue
+        color: $title
+        font-weight: bold
+
+        &:hover {
+            color: $title
+            text-decoration: none
+        }
+    }
+
+    .active {
+        ul {
+            display: block
+        }
+    }
+}
+
+.anchor {
+    display: block
+    overflow: hidden
+    width: 0
+    height: 0
+}
+
+section .anchor:first-child {
+    margin-top: h(-2)
+}
+
+
+// LAYOUT WITH THE LEFT MENU
+// -------------------------
+body.leftNav {
+    .page-body {
+        left: $main-menu-width
+    }
+
+    .document-nav.fixed {
+        left: $main-menu-width
+    }
+
+}
+
+// @media only screen and (min-width : 1400px) {
+// }

@@ -1,0 +1,46 @@
+!!!5
+html
+  head
+    title #{title} - #{site.name}
+    != css('style')
+  body(class=site.menu && 'leftNav' || '')
+    header.page-head
+      a(class="logo", href="/") #{site.name}
+      .page-cta
+        - if(site.github)
+          a(class="github", href=site.github) See on github
+        - if(site.repository)
+          a(class="repository", href=site.repository) Code
+        - if(site.download)
+          a(class="download", href=site.download) Download
+    
+    - if(site.menu)
+      nav.page-nav
+        div.main-menu
+          ul
+            - for item in site.menu
+              li(class=(item.children && 'parent ' || '')+((item.class == active) && 'active' || ''))
+                a(class=item.class, href=item.url) 
+                  span
+                  | #{item.title}
+        - for item in site.menu
+          - if(item.children)
+            ul(class="sub-menu "+item.class)
+              - for child in item.children
+                li
+                  a(class=child.class, href=child.url) #{child.title}
+                
+
+    block content
+
+    != js('layout')
+
+    - if(site.analytics_id)
+      script
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+        ga("create", "#{site.analytics_id}", "#{site.domain}");
+        ga("send", "pageview");

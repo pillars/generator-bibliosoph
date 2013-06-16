@@ -1,0 +1,169 @@
+
+// TITLES
+// ---------------------------------------------
+h1, h2, h3, h4 {
+  color: $title;
+  font-family: $f-heading;
+  letter-spacing: 2px;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+}
+
+h1 {
+  font-family: 24px;
+  font-weight: normal;
+  line-height: h(2);
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: h();
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: h();
+}
+
+h4 {
+  font-size: 14px;
+  line-height: 24px;
+
+}
+
+
+
+// PARAGRAPHS
+// ---------------------------------------------
+p {
+  font-size: $f-medium;
+  line-height: $base-line-height
+  margin: 0
+
+  code {
+    line-height: $base-line-height
+  }
+}
+
+strong { 
+  // font-family:'DIN Next W01 Bold';
+  font-weight: bold;
+}
+em {
+  font-style: italic;
+}
+
+
+// LINKS
+// ---------------------------------------------
+a {
+  color: $link
+  cursor: pointer
+  text-decoration: none
+
+  &:hover, &:focus {
+    color: $link-hover
+    text-decoration: underline
+  }
+}
+
+
+// LISTS
+// ---------------------------------------------
+ol, ul, dl{
+  font-size: $f-medium;
+  line-height: $base-line-height;
+  margin: 0
+}
+
+ul {
+  list-style: disc;
+}
+
+dl {
+  margin: 0; padding: 0;
+
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    margin: 0 0 h();
+  }
+}
+
+
+// ABBR
+// ---------------------------------------------
+abbr {
+  font-variant: small-caps;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+}
+
+
+// QUOTES
+// ---------------------------------------------
+blockquote {
+  position: relative;
+  margin: h() 0 0 50px;
+  padding-top: h();
+
+  &:before {
+    font-family: $f-sans;
+    color: #CCC;
+    font-size: 50px;
+  
+    content: '“';
+    position: absolute;
+    top: 0px; left: -30px;
+  }
+
+  cite {
+    color: #666;
+    font-family: $f-sans;
+    font-style: italic;
+    text-align: right;
+    display: block;
+  }
+}
+
+// CODE
+// ---------------------------------------------
+pre {
+  margin: 0
+
+  code {
+    background: transparent
+    overflow: auto
+    padding-bottom: h()
+  }
+}
+
+code {
+  font-family: $f-mono
+  font-size: $f-medium
+  line-height: $base-line-height
+}
+
+h1, h2, h3, h4, h5, h6, p, li, dt, dl {
+  code {
+    background: $blue-bg-dark
+    line-height: 20px
+    padding: 0 2px
+  }
+}
+
+
+// FLOW
+// ---------------------------------------------
+h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, pre {
+  &+h1, &+h2, &+h3, &+h4, &+h5, &+h6,
+  &+p, &+ul, &+ol, &+dl, 
+  &+blockquote, &+pre {
+    margin-top: h()
+  }
+}

@@ -1,0 +1,12 @@
+{
+    "site": {
+        "name"          : "<%= name %>"<%if (domain) { %>
+      , "domain"        : "<%= domain %>"<% } %><%if (analytics_id) { %>
+      , "analytics_id"  : "<%= analytics_id %>"<% } %><%if (github) { %>
+      , "github"        : "<%= github %>"<% } %><%if (bitbucket) { %>
+      , "bitbucket"     : "<%= bitbucket %>"<% } %><%if (repository) { %>
+      , "repository"    : "<%= repository %>"<% } %><%if (download) { %>
+      , "download"      : "<%= download %>"<% } %><%if (menu) { %>
+      , "menu"          : []<% } %>
+    }
+}
