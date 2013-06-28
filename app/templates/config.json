@@ -2,9 +2,7 @@
     "site": {
         "name"          : "<%= name %>"<%if (domain_name) { %>
       , "domain"        : "<%= domain_name %>"<% } %><%if (analytics_id) { %>
-      , "analytics_id"  : "<%= analytics_id %>"<% } %><%if (github) { %>
-      , "github"        : "<%= github %>"<% } %><%if (bitbucket) { %>
-      , "bitbucket"     : "<%= bitbucket %>"<% } %><%if (repository) { %>
+      , "analytics_id"  : "<%= analytics_id %>"<% } %><%if (repository) { %>
       , "repository"    : "<%= repository %>"<% } %><%if (download) { %>
       , "download"      : "<%= download %>"<% } %><%if (menu) { %>
       , "menu"          : []<% } %>

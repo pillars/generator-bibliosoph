@@ -57,6 +57,12 @@ BibliosophGenerator.prototype.askFor = function askFor() {
     },
     {
       type: 'confirm',
+      name: 'credits',
+      message: 'Show us some love and add a discrete "Powered by Bibliosoph" link?',
+      default: true
+    },
+    {
+      type: 'confirm',
       name: 'menu',
       message: 'Do you want a menu?',
       default: true
@@ -90,9 +96,6 @@ BibliosophGenerator.prototype.askFor = function askFor() {
     for(var key in props) {
       this[key] = props[key];
     }
-
-    this.github = (this.repository.match(/github/)) ? this.repository : '';
-    this.bitbucket = (this.repository.match(/bitbucket/)) ? this.repository : '';
 
     cb();
   }.bind(this));

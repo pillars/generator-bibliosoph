@@ -1,18 +1,29 @@
-$(function() {
+$(window).load(function() {
 
     var $documentNav = $('.document-nav');
 
     if($documentNav.length) {
 
         var targets = []
-          , $window = $(window);
+          , $window = $(window)
+          , _ignoreHashChange = true
+          , locationHash = location.hash;
 
         $documentNav.find('a').each(function() {
             targets.push( $($(this).attr('href')) )
         });
 
-        function setActive($current) {
-            var $parent = $current.closest('li')
+
+        if(locationHash) {
+            $('html,body').animate({ scrollTop: $('a'+locationHash).offset().top }, 1, 'linear', function() {
+               _ignoreHashChange = false; 
+               $window.trigger('scroll');
+            });
+        }
+
+        function setActive(hash) {
+            var $current = $documentNav.find('[href='+hash+']')
+              , $parent = $current.closest('li')
               , $parentParent = $parent.parent().closest('li');
 
 
@@ -21,18 +32,20 @@ $(function() {
 
             if($parentParent.length) {
                 $parentParent.addClass('active')
-            } else {
+            } 
+            else {
                 $parent.addClass('active')
             }
-        }
 
-        // HASH change, update menu
-        // ========================
-        $window.on('hashchange', function() {
-            setTimeout(function() {
-                setActive($documentNav.find('[href='+location.hash+']'))
-            }, 1);
-        });
+            if(!_ignoreHashChange) {
+                if(history.pushState) {
+                    history.pushState(null, null, hash);
+                }
+                else {
+                    location.hash = hash;
+                }
+            }
+        }
 
         // Scroll, update menu
         // ===================
@@ -42,10 +55,11 @@ $(function() {
             $.each( targets, function($index, $el) {
                 var sectionBottom = (targets[$index+1] && targets[$index+1].offset().top - 1) || $window.height()
                 if ($el.length && scrollTop - sectionBottom < -48) {
-                    setActive($documentNav.find('[href=#'+$el.attr('id')+']'))
+                    setActive('#'+$el.attr('id'))
                     return false;
                 }
             });
+
         });
     }
 });
