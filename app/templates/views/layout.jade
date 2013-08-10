@@ -1,16 +1,22 @@
+- var bodyClass = '';
+block vars
 !!!5
 html
   head
     title #{title} - #{site.name}
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+
     != css('style')
-  body(class=site.menu && 'leftNav' || '')
+  body(class=(site.menu && 'left-nav ' || '')+'#{bodyClass}')
     header.page-head
       a(class="logo", href="/") #{site.name}
       .page-cta
-        - if(site.github)
-          a(class="github", href=site.github) See on github
-        - if(site.repository)
-          a(class="repository", href=site.repository) Code
+        - if(site.repository && site.repository.match(/github/))
+          a(class="github", href=site.repository) See on github
+        - else if(site.repository && site.repository.match(/bitbucket/))
+          a(class="bitbucket", href=site.repository) See on bitbucket
+        - else if(site.repository)
+          a(class="repository", href=site.repository) See the code
         - if(site.download)
           a(class="download", href=site.download) Download
     
@@ -18,6 +24,12 @@ html
       nav.page-nav
         div.main-menu
           ul
+            - if(bodyClass.indexOf('with-nav') != -1)
+              li(class="document-nav-trigger")
+                a(href="#")
+                  span
+                  span
+                  span
             - for item in site.menu
               li(class=(item.children && 'parent ' || '')+((item.class == active) && 'active' || ''))
                 a(class=item.class, href=item.url) 
@@ -32,6 +44,12 @@ html
                 
 
     block content
+
+    - if(site.credits)
+      footer.page-footer
+        :markdown
+          Powered by [Bibliosoph](https://github.com/pillars/bibliosoph)
+
 
     != js('layout')
 

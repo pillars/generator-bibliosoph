@@ -1,5 +1,4 @@
 # Generator-bibliosoph
-[![Build Status](https://secure.travis-ci.org/pillars/generator-bibliosoph.png?branch=master)](https://travis-ci.org/pillars/generator-bibliosoph)
 
 A generator for Yeoman.
 

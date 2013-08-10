@@ -1,12 +1,11 @@
 .two-col {
     .document-content {
-        min-width: 800px
         min-height: 100%
     }
 
     .document-wrap {
-        background: $blue-bg
-        border-left: 1px solid $blue-bg-dark
+        background: $right_col_bg
+        border-left: 1px solid $right_col_border
         box-shadow: #dadfe5 -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset
         
         clearfix()
@@ -25,37 +24,40 @@
         }
 
         & > section + section {
-            border-top: 1px solid $blue-bg-dark
+            border-top: 1px solid $right_col_border
         }
 
         .full, .left, .right {
             box-sizing: border-box
             float: left
-            padding: h(2)
+            padding: h(1.5)
             width: 50%
         }
         .full {
             clear: both
             width: 100%
         }
+        .left, .right {
+            max-width: 680px;
+        }
         .left {
             clear: both
         }
         .right {
-            clear: right
-            float: right
-            padding-top: h(4)
+            // clear: right
+            float: left
+            padding-top: h(3.5)
 
             &.thin-padding {
-                padding-top: h(3)
+                padding-top: h(2.5)
             }
 
             &.no-padding {
-                padding-top: h(2)
+                padding-top: h(1.5)
             }
 
             h3 {
-                color: $blue-dark
+                color: $right_col_title
                 font-family: $f-mono
                 font-size: 14px
                 letter-spacing: 1px
@@ -65,12 +67,6 @@
                     margin: 0
                 }
             }
-        }
-    }
-
-    &.with-nav {
-        .document-content {
-            margin-left: 248px
         }
     }
 }

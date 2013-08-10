@@ -1,27 +1,27 @@
-$header-height = h(2)
-$main-menu-width = h(4)
+$header_height = h(2)
+$main_menu_width = h(4)
 
 .page-head {
-    background: $blue-bg
-    border-bottom: 1px solid $nav-border
+    background: $head_bg
+    border-bottom: 1px solid $head_border
 
     position: fixed
     top: 0
     left: 0
     right: 0
-    height: $header-height
+    height: $header_height - 1px
     z-index: $z-header
 
     .logo {
-        color: $title
-        line-height: $header-height
+        color: $head_text
+        line-height: $header_height
         font-size: 24px
         font-weight: bold
         text-decoration: none
 
         float: left
         margin-left: h(.5)
-        height: $header-height
+        height: $header_height
     }
 
     .page-cta {
@@ -29,8 +29,8 @@ $main-menu-width = h(4)
         margin: h(.5) h(.5) 0 0
 
         a {
-            border: 1px solid $blue-bg-dark
-            color: $blue
+            border: 1px solid $right_col_border
+            color: $head_text
             border-radius: 12px
             font-size: 12px
             line-height: 16px
@@ -41,7 +41,7 @@ $main-menu-width = h(4)
             height: 16px
 
             &:hover {
-                background: $blue
+                background: $head_text
                 border: 1px solid transparent
                 color: #FFF
             }
@@ -50,23 +50,18 @@ $main-menu-width = h(4)
 }
 
 .page-nav {
-    position: absolute
-    top: 0
+    box-sizing: border-box
+    position: fixed
+    top: $header_height
+    bottom: 0
     left: 0
-    padding-top: $header-height
-    height: 100%
     z-index: $z-page-nav
 
-    &.fixed {
-        position: fixed
-        top: -1 * $header-height
-    }
-
     .main-menu {
-        background: $nav-bg
-        border-top: 1px solid $nav-light
-        border-right: 1px solid $nav-border
-        box-shadow: 1px 0 2px 0 $nav-border
+        background: $nav_bg
+        border-top: 1px solid $nav_hover
+        border-right: 1px solid $nav_border
+        box-shadow: 1px 0 2px 0 $nav_border
         position: relative
         height: 100%
         z-index: 5
@@ -76,17 +71,17 @@ $main-menu-width = h(4)
             clearfix()
             margin: 0
             padding: 0
-            width: $main-menu-width
+            width: $main_menu_width
         }
 
         li {
-            border-top: 1px solid $nav-border
-            border-bottom: 1px solid $nav-light
+            border-top: 1px solid $nav_border
+            border-bottom: 1px solid $nav_light
 
             position: relative
             margin-top: -2px
             padding-bottom: 2px
-            height: $main-menu-width
+            height: $main_menu_width
             z-index: 5
 
             &:first-child {
@@ -114,16 +109,16 @@ $main-menu-width = h(4)
             $arrow-size = 8px
             $arrow-border = $arrow-size + 2px
 
-            &:after, &:before {
+            &:after, &:before {
                 content: ""
                 position: absolute
                 top: 50%
                 right: 0
-                transition: 0.1s all linear;
+                transition: 0.1s all linear
             }
 
-            &:after {
-                border-left: $arrow-size solid $nav-hover
+            &:after {
+                border-left: $arrow-size solid $nav_hover
                 border-top: $arrow-size solid transparent
                 border-bottom: $arrow-size solid transparent
 
@@ -132,7 +127,7 @@ $main-menu-width = h(4)
             }
 
             &:before {
-                border-left: $arrow-border solid $nav-border
+                border-left: $arrow-border solid $nav_border
                 border-top: $arrow-border solid transparent
                 border-bottom: $arrow-border solid transparent
 
@@ -141,31 +136,37 @@ $main-menu-width = h(4)
             }
 
             &:hover, &.active {
-                border-top: 1px solid $nav-border
-                border-bottom: 1px solid $nav-border
+                border-top: 1px solid $nav_border
+                border-bottom: 1px solid $nav_border
                 z-index: 10
 
-                &:after {
+                a {
+                    background: $nav_hover
+                    border-color: transparent
+                }
+            }
+
+            &.active {
+                &:after {
                     right: -1 * $arrow-size
                 }
 
                 &:before {
-                    right: -1 * $arrow-border;
-                }
-
-                a {
-                    background: $nav-hover
-                    border-color: transparent
+                    right: -1 * $arrow-border
                 }
             }
         }
 
+        .document-nav-trigger {
+            display: none
+        }
+
 
         a {
-            background: $nav-bg
-            border-top: 1px solid $nav-light
-            border-bottom: 1px solid $nav-border
-            color: $text
+            background: $nav_bg
+            border-top: 1px solid $nav_light
+            border-bottom: 1px solid $nav_border
+            color: $nav_link
             font-size: 12px
             font-weight: bold
             line-height: h()
@@ -178,7 +179,11 @@ $main-menu-width = h(4)
             height: h()
             z-index: 2
 
-            transition: 0.4s background linear;
+            transition: 0.4s background linear
+
+            &:hover {
+                color: $nav_link_hover
+            }
 
             span {
                 display: block
@@ -191,20 +196,23 @@ $main-menu-width = h(4)
             }
         }
 
-        .home span       { background: url('../images/sprite.png') no-repeat -50px 0 }
-        .layouts span    { background: url('../images/sprite.png') no-repeat -100px 0 }
-        .develop span    { background: url('../images/sprite.png') no-repeat -150px 0 }
+        .home span       { background: url('../images/icons/home_48.png') no-repeat 0 0 }
+        .layouts span    { background: url('../images/icons/display_off_48.png') no-repeat 0 0 }
+        .develop span    { background: url('../images/icons/console_48.png') no-repeat 0 0 }
+        .setting span    { background: url('../images/icons/gear_48.png') no-repeat 0 0 }
+        .docs span       { background: url('../images/icons/document_48.png') no-repeat 0 0 }
+        .tutorial span   { background: url('../images/icons/book_48.png') no-repeat 0 0 }
     }
 
     .sub-menu {
-        background: $nav-hover
-        border-right: 1px solid $nav-border
+        background: $nav_hover
+        border-right: 1px solid $nav_border
         list-style: none
         transition: 0.3s all cubic-bezier(0.86, 0, 0.07, 1)
 
-        // display: none
+        overflow: scroll
         position: absolute
-        top: $header-height
+        top: $header_height
         bottom: 0
         right: 0
         margin: 0
@@ -216,20 +224,26 @@ $main-menu-width = h(4)
             right: -248px
         }
 
+        li:first-child a {
+            border-top: 2px solid $nav_hover
+        }
+
         li:last-child {
-            border-bottom: 1px solid $nav-bg
+            border-bottom: 1px solid $nav_bg
         }
 
         a {
-            border-top: 1px solid $nav-bg
+            border-top: 1px solid $nav_bg
+            color: $subnav_link
             line-height: h(2) - 1px
             display: block
             padding: 0 h()
-            height: h(2) - 1px
+            height: h(2)
 
             &:hover {
-                background: $subnav-hover
-                border-top: 1px solid $nav-border
+                background: $subnav_hover
+                border-top: 1px solid $nav_border
+                color: $subnav_link_hover
                 text-decoration: none
             }
         }
@@ -238,39 +252,45 @@ $main-menu-width = h(4)
 
 .page-body {
     position: absolute
-    top: $header-height
+    top: $header_height
     left: 0
     right: 0
     bottom: 0
 }
 
 .page-footer {
-    color: $blue-dark
+    color: $foot_link
     font-size: 10px
     position: fixed
     right: 8px
     bottom: 0
 
     a {
-        color: $blue-dark
+        color: $foot_link
         text-decoration: underline
 
         &:hover {
-            color: $blue
+            color: $foot_link_hover
         }
     }
 }
 
 .document-nav {
-    background: #FFF;
-    border-right: 1px solid $blue-bg-dark
+    background: #FFF
+    border-right: 1px solid $right_col_border
 
     position: absolute
     top: 0
     bottom: 0
     left: 0
-    padding: h() 0 h() h()
-    width: 224px
+    overflow: auto
+    padding: h() 0 h() h(1.5)
+    width: 212px
+    z-index: $z-document-nav
+
+    &.show {
+        display: block !important
+    }
 
     &.fixed {
         position: fixed
@@ -306,12 +326,17 @@ $main-menu-width = h(4)
     }
 
     a {
+        color: $document_nav_link
         display: block
         padding-right: h()
+
+        &:hover {
+            color: $document_nav_link_hover
+        }
     }
 
     .current {
-        border-right: 3px solid $blue
+        border-right: 3px solid $document_nav_link
         color: $title
         font-weight: bold
 
@@ -338,16 +363,264 @@ $main-menu-width = h(4)
 
 // LAYOUT WITH THE LEFT MENU
 // -------------------------
-body.leftNav {
+body.left-nav {
+    .page-head {
+        .logo {
+            margin-left: 130px
+        }
+    }
+
     .page-body {
-        left: $main-menu-width
+        left: $main_menu_width
     }
 
     .document-nav.fixed {
-        left: $main-menu-width
+        left: $main_menu_width
     }
-
 }
 
-// @media only screen and (min-width : 1400px) {
-// }
+body.left-nav-narrow {
+    $main_menu_narrow_width = h(2)
+
+    .page-nav {
+        .main-menu {
+
+            ul {
+                width: $main_menu_narrow_width
+            }
+
+            li {
+                height: $main_menu_narrow_width
+            }
+
+            a {
+                text-indent: -9999px
+                padding: 0
+                height: h(2)
+
+                span {
+                    top: h(.5)
+                    left: h(.5)
+                    width: h()
+                    height: h()
+                }
+            }
+
+            .document-nav-trigger {
+                position: absolute
+                bottom: 0
+                width: $main_menu_narrow_width
+
+                a {
+                    margin: 0
+                    padding: 4px 0 0
+                    width: $main_menu_narrow_width
+                    height: $main_menu_narrow_width - 4px
+                }
+
+                span {
+                    background: #FFF
+                    display: block
+
+                    position: relative
+                    margin-left: 2px
+                    width: 20px
+                    height: 4px
+
+                    & + span {
+                        margin-top: 2px
+                    }
+                }
+
+            }
+
+            .home span       { background: url('../images/icons/home_24.png') no-repeat 0 0 }
+            .layouts span    { background: url('../images/icons/display_off_24.png') no-repeat 0 0 }
+            .develop span    { background: url('../images/icons/console_24.png') no-repeat 0 0 }
+            .setting span    { background: url('../images/icons/gear_24.png') no-repeat 0 0 }
+            .docs span       { background: url('../images/icons/document_24.png') no-repeat 0 0 }
+            .tutorial span   { background: url('../images/icons/book_24.png') no-repeat 0 0 }
+        }
+    }
+    .page-head .logo {
+        margin-left: 82px
+    }
+
+    .page-body {
+        left: $main_menu_narrow_width
+    }
+
+    .document-nav.fixed {
+        left: $main_menu_narrow_width
+    }
+}
+
+body.bottom-nav {
+    $main_menu_narrow_width = h(2)
+
+    .page-nav {
+        position: fixed
+        top: auto !important
+        bottom: 0
+        left: 0
+        padding-top: 0
+        width: 100%
+        height: $main_menu_narrow_width
+
+        .main-menu {
+            border-left: 1px solid $nav_light
+            border-top: 1px solid $nav_border
+            box-shadow: 0 1px 2px 0 $nav_border
+            width: 100%
+            height: auto
+
+            ul {
+                width: auto
+                height: $main_menu_narrow_width
+            }
+
+            li {
+                border-top: none
+                border-bottom: none
+                border-left: 1px solid $nav_border
+                border-right: 1px solid $nav_light
+
+                float: left
+                margin-top: 0
+                margin-left: -2px
+                padding-bottom: 0
+                width: $main_menu_narrow_width
+                height: $main_menu_narrow_width
+                
+                &:first-child {
+                    border-left: 0
+                    margin-left: 0
+                    padding-bottom: 0
+
+                    a {
+                        border-left: 0
+                    }
+
+                    &:hover, &.active {
+                        border-left: 0
+
+                        a {
+                            border-left: 0
+                        }
+                    }
+                }
+
+                &:last-child {
+                    border-right: 1px solid $nav_border
+                    // border-right: 0
+                }
+
+                $arrow-size = 6px
+                $arrow-border = $arrow-size + 2px
+
+                &:after, &:before {
+                    top: 0
+                    left: 50%
+                    right: auto
+                }
+
+                &:after {
+                    border-top: none
+                    border-bottom: $arrow-size solid $nav_hover
+                    border-left: $arrow-size solid transparent
+                    border-right: $arrow-size solid transparent
+
+                    margin-top: 0
+                    margin-left: -1 * $arrow-size
+                    z-index: 1
+                }
+
+                &:before {
+                    border-top: none
+                    border-bottom: $arrow-border solid $nav_border
+                    border-left: $arrow-border solid transparent
+                    border-right: $arrow-border solid transparent
+
+                    margin-top: 0
+                    margin-left: -1 * $arrow-border
+                }
+
+                &:hover, &.active {
+                    border-top: none
+                    border-bottom: none
+                    border-left: 1px solid $nav_border
+                    border-right: 1px solid $nav_border
+                }
+
+                &.active {
+                    &:after {
+                        top: -1 * $arrow-size
+                    }
+
+                    &:before {
+                        top: -1 * $arrow-border
+                    }
+                }
+            }
+
+            .document-nav-trigger {
+                left: auto
+                right: 0
+            }
+        }
+
+        .sub-menu {
+            background: transparent
+            border-right: none
+
+            box-sizing: border-box
+            position: fixed
+            top: auto
+            bottom: 0
+            left: 0
+            right: 0
+            padding: 0
+            width: auto
+            max-height: 0
+
+            &.open {
+                padding: 0 0 $main_menu_narrow_width
+                max-height: 100%
+            }
+
+            li {
+                background: $nav_hover
+            }
+
+            a {
+                padding: 0 h(1.5)
+            }
+        }
+    }
+
+    .page-head .logo {
+        margin-left: 36px
+    }
+
+    .page-body {
+        left: 0
+    }
+
+    .document-nav {
+        border-right: none
+        border-left: 1px solid $right_col_border
+        left: auto !important
+        right: 0
+        padding-bottom: h(3)
+    }
+
+    .document-nav.fixed {
+        left: 0
+    }
+}
+
+body.with-nav {
+    .document-content {
+        margin-left: 248px
+    }
+}

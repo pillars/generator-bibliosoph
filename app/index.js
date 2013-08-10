@@ -52,7 +52,7 @@ BibliosophGenerator.prototype.askFor = function askFor() {
     },
     {
       name: 'domain_name',
-      message: 'The domain name the site will be hosted under (required only by Google Analytics)',
+      message: 'The domain name the site will be hosted under (exemple.com)',
       default: false
     },
     {
@@ -106,6 +106,7 @@ BibliosophGenerator.prototype.app = function app() {
   this.directory('lib');
   this.directory('public');
   this.directory('views');
+  this.directory('bin');
 
   this.template('app.js');
   this.template('config.json');

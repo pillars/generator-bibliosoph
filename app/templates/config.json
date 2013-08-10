@@ -1,6 +1,7 @@
 {
     "site": {
-        "name"          : "<%= name %>"<%if (domain_name) { %>
+        "name"          : "<%= name %>"
+      , "credits"       : <%= (domain_name) ? 'true' : 'false' %><%if (domain_name) { %>
       , "domain"        : "<%= domain_name %>"<% } %><%if (analytics_id) { %>
       , "analytics_id"  : "<%= analytics_id %>"<% } %><%if (repository) { %>
       , "repository"    : "<%= repository %>"<% } %><%if (download) { %>
